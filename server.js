@@ -3,7 +3,7 @@ const app = express();
 const cors = require("cors");
 const dotenv = require("dotenv");
 const jwt = require("jsonwebtoken");
-const passport = require("./passport-config"); 
+const passport = require("./passport-config");
 dotenv.config();
 const userService = require("./user-service.js");
 
@@ -11,8 +11,7 @@ const HTTP_PORT = process.env.PORT || 8080;
 
 app.use(express.json());
 app.use(cors());
-app.use(passport.initialize()); 
-
+app.use(passport.initialize());
 
 app.post("/api/user/register", (req, res) => {
   userService
@@ -47,7 +46,6 @@ app.post("/api/user/login", (req, res) => {
       res.status(422).json({ message: msg });
     });
 });
-
 
 app.get(
   "/api/user/favourites",
