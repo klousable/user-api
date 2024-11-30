@@ -3,8 +3,7 @@ const bcrypt = require("bcryptjs");
 const dotenv = require("dotenv");
 dotenv.config();
 
-let mongoDBConnectionString = process.env.MONGO_URL;
-
+let mongoDBConnectionString = `${process.env.MONGO_URL}/${process.env.MONGO_DB}`;
 let Schema = mongoose.Schema;
 
 let userSchema = new Schema({
