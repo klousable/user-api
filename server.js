@@ -14,7 +14,6 @@ app.use(cors());
 app.use(passport.initialize());
 
 app.post("/api/user/register", (req, res) => {
-  console.log("Registration request data:", req.body);
   userService
     .registerUser(req.body)
     .then((msg) => {
