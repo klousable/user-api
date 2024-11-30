@@ -97,6 +97,7 @@ app.get(
   "/api/user/history",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    console.log("In API Get User History")
     userService
       .getHistory(req.user._id)
       .then((data) => {

@@ -88,10 +88,33 @@ module.exports.getFavourites = function (id) {
     User.findById(id)
       .exec()
       .then((user) => {
-        resolve(user.favourites);
+        resolve({
+          message: "Successfully retrieved favourites",
+          favourites: user.favourites,
+        });
       })
       .catch((err) => {
-        reject(`Unable to get favourites for user with id: ${id}`);
+        reject({
+          message: `Unable to get favourites for user with id: ${id}`,
+          error: err,
+        });
+      });
+  });
+};
+
+module.exports.getUserById = function (id) {
+  return new Promise((resolve, reject) => {
+    User.findById(id)
+      .exec()
+      .then((user) => {
+        if (user) {
+          resolve(user);
+        } else {
+          reject(`No user found with ID: ${id}`);
+        }
+      })
+      .catch((err) => {
+        reject(`Error fetching user by ID: ${err}`);
       });
   });
 };
@@ -139,10 +162,16 @@ module.exports.getHistory = function (id) {
     User.findById(id)
       .exec()
       .then((user) => {
-        resolve(user.history);
+        resolve({
+          message: "Successfully retrieved history",
+          history: user.history,
+        });
       })
       .catch((err) => {
-        reject(`Unable to get history for user with id: ${id}`);
+        reject({
+          message: `Unable to get history for user with id: ${id}`,
+          error: err,
+        });
       });
   });
 };
