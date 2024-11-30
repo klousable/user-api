@@ -20,10 +20,8 @@ let User;
 
 module.exports.connect = function () {
   return new Promise(function (resolve, reject) {
-    // Pass the database name in the options instead of in the URL
     mongoose
       .connect(mongoDBConnectionString, {
-        dbName: process.env.MONGO_DB,
         useNewUrlParser: true,
         useUnifiedTopology: true,
       })
