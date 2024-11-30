@@ -12,6 +12,11 @@ const options = {
 passport.use(
   new JwtStrategy(options, async (jwtPayload, done) => {
     try {
+      console.log(jwtPayload);
+      if (Date.now() >= jwtPayload.exp * 1000) {
+        return done(null, false, { message: "Token has expired" });
+      }
+
       const user = await userService.getUserById(jwtPayload._id);
       if (user) {
         return done(null, user);
