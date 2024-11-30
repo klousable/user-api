@@ -89,7 +89,6 @@ module.exports.getFavourites = function (id) {
       .exec()
       .then((user) => {
         resolve({
-          message: "Successfully retrieved favourites",
           favourites: user.favourites,
         });
       })
@@ -163,7 +162,6 @@ module.exports.getHistory = function (id) {
       .exec()
       .then((user) => {
         resolve({
-          message: "Successfully retrieved history",
           history: user.history,
         });
       })
